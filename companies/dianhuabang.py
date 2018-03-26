@@ -158,6 +158,19 @@ def re_match_str():
 # ***********************************************************************************************************
 # 说说你常用的三方库
 #
+# ***********************************************************************************************************
+# 实现单例
+
+class Singleton(object):
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+
+class MyClass(Singleton):
+    a = 1
+
 
 # ***********************************************************************************************************
 if __name__ == "__main__":
@@ -181,3 +194,9 @@ if __name__ == "__main__":
     init_list()
     # 13、***************************************
     re_match_str()
+
+    one = MyClass()
+    two = MyClass()
+    print(one.a)
+    print(two.a)
+    print(one is two)
